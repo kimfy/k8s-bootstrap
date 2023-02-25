@@ -1,0 +1,9 @@
+*.tfstate
+*.terraform/
+*.crt
+*.pem
+*.cer
+*.der
+*.base64
+
+kubeconfig
