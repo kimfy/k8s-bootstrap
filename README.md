@@ -13,6 +13,7 @@ You need a Kubernetes cluster which is accessible by GitHub agents. I have used 
 1. kubectl
 2. git
 3. terraform
+4. pre-commit (optional)
 
 ## Deploy
 

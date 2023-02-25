@@ -1,5 +1,8 @@
 *.tfstate
+*.tfplan
+**.tfplan
 *.terraform/
+*.tfstate.backup
 *.crt
 *.pem
 *.cer
