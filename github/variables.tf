@@ -10,6 +10,5 @@ variable "github_repository_environment" {
 
 variable "kubeconfig_path" {
   type = string
-  description = "Absolute path to kubeconfig file."
-  default = "dev"
+  description = "Path to kubeconfig relative to the root module. This file can not reside outside of the github module."
 }

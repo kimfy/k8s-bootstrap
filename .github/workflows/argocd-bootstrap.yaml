@@ -1,5 +1,6 @@
 name: install argocd
 on: 
+  workflow_dispatch:
   push:
     paths:
       - "argocd/**"
