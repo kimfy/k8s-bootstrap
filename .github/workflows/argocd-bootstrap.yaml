@@ -4,11 +4,12 @@ on:
   push:
     paths:
       - "argocd/**"
+
 jobs:
-  deploy:
+  deployment:
     name: Deploy
     runs-on: ubuntu-latest
-
+    environment: prod
     steps:
     # docs: https://github.com/actions-hub/kubectl
     - uses: actions-hub/kubectl@master
