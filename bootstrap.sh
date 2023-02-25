@@ -1,9 +1,9 @@
 #!/bin/bash
 
 # === variables
-export GITHUB_TOKEN="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"
+export GITHUB_TOKEN=""
 github_repository_name="kimfy/k8s-bootstrap"
-github_environment="prod"
+github_repository_environment="prod"
 kubeconfig_path="kubeconfig"
 
 # This file bootstraps your environment.
@@ -28,12 +28,14 @@ fi
 
 echo $GITHUB_TOKEN
 
-terraform -chdir=github/ init
+rm github/plan.tfplan > /dev/null 2>&1
+
+GITHUB_TOKEN=$GITHUB_TOKEN terraform -chdir=github/ init
 TF_VAR_github_repository_name=$github_repository_name \
-TF_VAR_github_environment=$github_environment \
+TF_VAR_github_repository_environment=$github_repository_environment \
 TF_VAR_kubeconfig_path=$kubeconfig_path \
-terraform -chdir=github/ plan -out plan.tfplan
-terraform -chdir=github/ apply plan.tfplan
+GITHUB_TOKEN=$GITHUB_TOKEN terraform -chdir=github/ plan -out plan.tfplan
+GITHUB_TOKEN=$GITHUB_TOKEN terraform -chdir=github/ apply plan.tfplan
 #
 # Option 2: Bootstrap cluster with ArgoCD
 # Your cluster does not have to be available on the public internet/tunnel.
