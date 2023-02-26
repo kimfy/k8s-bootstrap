@@ -35,3 +35,30 @@ The project must be set up with the following environment secrets and variables.
 | Name | Description | Referenced by |
 | ---- | ----------- | ------------- |
 | KUBE_CONFIG | Kubeconfig | ${{ secrets.KUBE_CONFIG }} |
+
+## Cloudflare Tunnel
+
+1. Copy Kubernetes ca.crt from cluster to local machine.
+```
+# kind clusters
+# 1. Identify ID
+docker ps
+# 2. Copy ca.crt out
+docker cp $id:/etc/kubernetes/pki/ca.crt .
+```
+
+2. Follow Cloudflare's guides on Tunnels
+3. Settings on the tunnel:
+
+| Setting | Value | Description |
+| ------- | ----- | ----------- |
+| Service | HTTPS | |
+| URL | localhost:44811 | Kubernetes API |
+| Origin Server Name | kubernetes | |
+| Certificate Authority Pool | Path to ca.crt on machine | Location on machine where ca.crt is (`/home/k/P/p/h/ca.crt`)
+| No TLS Verify | Enabled |
+
+Finished
+
+
+
