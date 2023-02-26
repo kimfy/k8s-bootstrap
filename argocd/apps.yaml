@@ -13,9 +13,9 @@ spec:
       name: '{{appName}}'
     spec:
       project: default
-      chart: '{{appName}}'
       source:
         repoURL: https://charts.jetstack.io
+        chart: '{{appName}}'
         targetRevision: 1.11.0
         helm:
           releaseName: '{{appName}}'
