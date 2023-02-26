@@ -21,7 +21,8 @@ jobs:
       # Upload argocd-initial-admin-secret to GitHub
     # docs: https://github.com/actions-hub/kubectl
     - run: mkdir -p '${{ github.workspace }}/.kube'
-    - run: ${{ secrets.KUBE_CONFIG }} | base64 -d > $KUBECONFIG
+    - run: echo ${{ secrets.KUBE_CONFIG }} | base64 -d > $KUBECONFIG
+    - run: cat $KUBECONFIG
     - run: KUBECONFIG=$KUBECONFIG kubectl create ns ${{ env.ARGOCD_NAMESPACE }}
 
     - uses: actions-hub/kubectl@master
