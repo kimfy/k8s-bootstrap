@@ -23,7 +23,7 @@ jobs:
     - run: mkdir -p '${{ github.workspace }}/.kube'
     - run: echo ${{ secrets.KUBE_CONFIG }} | base64 -d > $KUBECONFIG
     - run: kubectl apply -n ${{ env.ARGOCD_NAMESPACE }} -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
-    - run: kubectl port-forward svc/argocd-server -n argocd 8080:443
+    - run: kubectl port-forward svc/argocd-server -n argocd 8080:443 &
     - run: curl https://localhost:8080 --insecure
     # Install the app of apps here
     # For production or application teams, they must request new applicationsets and provide us with the url and path.
