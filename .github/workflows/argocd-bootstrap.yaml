@@ -23,7 +23,7 @@ jobs:
     - run: mkdir -p '${{ github.workspace }}/.kube'
     - run: echo ${{ secrets.KUBE_CONFIG }} | base64 -d > $KUBECONFIG
     - run: cat $KUBECONFIG
-    - run: KUBECONFIG=$KUBECONFIG kubectl create ns ${{ env.ARGOCD_NAMESPACE }}
+    - run: kubectl create ns ${{ env.ARGOCD_NAMESPACE }}
 
     - uses: actions-hub/kubectl@master
       env:
