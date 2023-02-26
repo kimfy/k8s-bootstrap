@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - "argocd/**"
+      - ".github/workflows/argocd-bootstrap.yaml"
 
 env:
   ARGOCD_NAMESPACE: argocd
