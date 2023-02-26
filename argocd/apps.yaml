@@ -20,10 +20,8 @@ spec:
         helm:
           releaseName: '{{appName}}'
           # does the below work?
-          valueFiles: 
-            - cert-manager/values.yaml
       destination:
-        server: in-cluster
+        server: https://kubernetes.default.svc
         namespace: '{{namespace}}'
       syncPolicy:
         automated:
