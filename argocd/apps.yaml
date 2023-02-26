@@ -1,0 +1,34 @@
+---
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: apps
+spec:
+  generators:
+  - list:
+    elements:
+      - appName: cert-manager
+        namespace: cert-manager
+  template:
+    metadata:
+      name: {{ appName }}
+    spec:
+      project: default
+      chart: {{ appName }}
+      source:
+        repoURL: https://charts.jetstack.io
+        targetRevision: 1.11.0
+        helm:
+          releaseName: {{ appName }}
+          # does the below work?
+          valueFiles: 
+          - cert-manager/values.yaml
+      destination:
+        server: in-cluster
+        namespace: {{ namespace }}
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+          - CreateNamespace=true

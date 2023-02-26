@@ -1,0 +1,23 @@
+name: deploy argocd apps
+on: 
+  workflow_dispatch:
+  push:
+    paths:
+      - "argocd/apps.yaml"
+      - ".github/workflows/argocd-apps.yaml"
+
+jobs:
+  deployment:
+    name:
+    runs-on: ubuntu-latest
+    environment: prod # bad practice, magic link to github env, dont know if it exists
+    steps:
+    # docs: https://github.com/actions-hub/kubectl
+    - uses: actions-hub/kubectl@master
+      env:
+        KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
+      with:
+        args: apply -f argocd/apps.yaml
+    # Install the app of apps here
+    # For production or application teams, they must request new applicationsets and provide us with the url and path to their k8s configs in repo.
+    
