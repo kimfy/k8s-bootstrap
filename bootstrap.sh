@@ -1,6 +1,13 @@
 #!/bin/bash
 
 # === variables
+# = Kubernetes cluster bootstrap
+K8S_BOOTSTRAP_CONFIG_PATH="~/.kube/config"
+K8S_API_URL="https://strandgaten.iversen.dev"
+NS="bootstrap"
+SECRET="bootstrap"
+
+# = GitHub
 export GITHUB_TOKEN=""
 github_repository_name="kimfy/k8s-bootstrap"
 github_repository_environment="prod"
@@ -10,8 +17,34 @@ kubeconfig_path="kubeconfig"
 # It does the following:
 # 1. Create a Service Account in Kubernetes with the role `cluster-admin`.
 # 2. Uploads a Kubeconfig for the service Account
-#
-#
+
+#SERVICE_ACCOUNT=bootstrapper
+#SECRET_NAME=$SERVICE_ACCOUNT
+#NS=bootstrap
+# Create a service principal
+#kubectl apply -f k8s-bootstrap/bootstrap.yaml
+# Extract the Bearer token from the Secret and decode
+# Input this into a ConfigMap
+
+#KUBE_CONFIG_PATH=$K8S_BOOTSTRAP_CONFIG_PATH \
+#terraform -chdir=k8s-bootstrap destroy
+
+KUBE_CONFIG_PATH=$K8S_BOOTSTRAP_CONFIG_PATH \
+terraform -chdir=k8s-bootstrap init
+
+KUBE_CONFIG_PATH=$K8S_BOOTSTRAP_CONFIG_PATH \
+TF_VAR_k8s_api_url=$K8S_API_URL \
+terraform -chdir=k8s-bootstrap plan -out plan.tfplan \
+
+KUBE_CONFIG_PATH=$K8S_BOOTSTRAP_CONFIG_PATH \
+terraform -chdir=k8s-bootstrap apply  plan.tfplan
+
+TOKEN=$(kubectl get secret $SECRET_NAME -n ${NS} -o json | jq -Mr '.data.token' | base64 -d)
+
+terraform -chdir=k8s-bootstrap output -raw kubeconfig > github/kubeconfig
+cat github/kubeconfig
+
+# === End k8s-bootstrap
 
 # Kubernetes bootstrap: Create service principal | Terraform this as well?
 # k8s-bootstrap/bootstrap.sh
