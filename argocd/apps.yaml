@@ -5,7 +5,7 @@ metadata:
 spec:
   generators:
   - list:
-    elements:
+      elements:
       - appName: cert-manager
         namespace: cert-manager
   template:
