@@ -13,7 +13,7 @@ jobs:
     environment: prod # bad practice, magic link to github env, dont know if it exists
     steps:
     # docs: https://github.com/actions-hub/kubectl
-    - uses: checkout
+    - uses: actions/checkout@v3
     - uses: actions-hub/kubectl@master
       env:
         KUBE_CONFIG: ${{ secrets.KUBE_CONFIG }}
