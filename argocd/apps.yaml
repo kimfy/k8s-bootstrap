@@ -10,15 +10,15 @@ spec:
         namespace: cert-manager
   template:
     metadata:
-      name: {{ appName }}
+      name: {{appName}}
     spec:
       project: default
-      chart: {{ appName }}
+      chart: {{appName}}
       source:
         repoURL: https://charts.jetstack.io
         targetRevision: 1.11.0
         helm:
-          releaseName: {{ appName }}
+          releaseName: {{appName}}
           # does the below work?
           valueFiles: 
           - cert-manager/values.yaml
