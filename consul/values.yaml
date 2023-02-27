@@ -1523,7 +1523,7 @@ ui:
   # configure `ui.service`.
   # @default: global.enabled
   # @type: boolean
-  enabled: true
+  enabled: false
 
   # Configure the service for the Consul UI.
   service:
