@@ -13,13 +13,16 @@ spec:
       name: '{{appName}}'
     spec:
       project: default
-      source:
-        repoURL: https://charts.jetstack.io
+      sources:
+      - repoURL: https://charts.jetstack.io
         chart: '{{appName}}'
         targetRevision: 1.11.0
         helm:
-          releaseName: '{{appName}}'
-          # does the below work?
+          valueFiles:
+          - $values/cert-manager/values.yaml
+      - repoURL: https://github.com/kimfy/k8s-bootstrap.git
+        targetRevision: main
+        ref: values
       destination:
         server: https://kubernetes.default.svc
         namespace: '{{namespace}}'
