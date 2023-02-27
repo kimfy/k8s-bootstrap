@@ -10,12 +10,12 @@ spec:
           namespace: consul
   template:
     metadata:
-      name: '{{appName}}'
+      name: '{{name}}'
     spec:
       project: default
       sources:
       - repoURL: https://helm.releases.hashicorp.com
-        chart: '{{appName}}'
+        chart: '{{name}}'
         targetRevision: 1.0.4
         helm:
           valueFiles:
