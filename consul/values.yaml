@@ -7,7 +7,7 @@ global:
   # this default via its component-specific "enabled" config. If false, no components
   # will be installed by default and per-component opt-in is required, such as by
   # setting `server.enabled` to true.
-  enabled: true
+  enabled: false
 
   # The default log level to apply to all components which do not otherwise override this setting.
   # It is recommended to generally not set this below "info" unless actively debugging due to logging verbosity.
