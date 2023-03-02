@@ -3,14 +3,10 @@ spec:
     server: https://kubernetes.default.svc
 
 vault:
-  enabled: false
-
-certmanager:
-  enabled: false
+  enabled: true
 
 consul:
-  enabled: false
+  enabled: true
 
-cilium:
-  enabled: false
-
+certmanager:
+  enabled: true
