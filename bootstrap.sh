@@ -8,7 +8,7 @@ NS="bootstrap"
 SECRET="bootstrap"
 
 # === ArgoCD Bootstrapping
-kubectl apply -f argocd/app-of-apps.yaml
+#kubectl apply -f argocd/app-of-apps.yaml
 
 # = GitHub
 export GITHUB_TOKEN=""
