@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     path: .
-    repoUrl: https://github.com/kimfy/k8s-bootstrap
+    repoURL: https://github.com/kimfy/k8s-bootstrap
     targetRevision: HEAD
   syncPolicy:
     automated:
