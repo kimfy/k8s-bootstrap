@@ -1,0 +1,16 @@
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+
+vault:
+  enabled: false
+
+certmanager:
+  enabled: false
+
+consul:
+  enabled: false
+
+cilium:
+  enabled: false
+

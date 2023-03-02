@@ -3,9 +3,12 @@
 # === variables
 # = Kubernetes cluster bootstrap
 K8S_BOOTSTRAP_CONFIG_PATH="~/.kube/config"
-K8S_API_URL="https://strandgaten.iversen.dev"
+K8S_API_URL="https://kimsdextop.iversen.dev"
 NS="bootstrap"
 SECRET="bootstrap"
+
+# === ArgoCD Bootstrapping
+kubectl apply -f argocd/app-of-apps.yaml
 
 # = GitHub
 export GITHUB_TOKEN=""
